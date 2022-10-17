@@ -1,8 +1,12 @@
+import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 const Login = () => {
+    const api = useSelector(state=>state.url)
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
     const formik = useFormik({
         initialValues: {
@@ -14,14 +18,23 @@ const Login = () => {
             password: Yup.string().required('Required')
         }),
         onSubmit: (values)=>{
+            setIsLoading(true)
             console.log(values)
+            axios.post(`${api}user/signin`, values).then(res=>{
+                setIsLoading(false)
+                console.log(res.data)
+            }).catch(err=>{
+                setIsLoading(false)
+                console.log(err)
+                setError(err.response.data.message)
+            })
         }
     })
     return (
         <div>
             <form className='px-3 py-4' onSubmit={formik.handleSubmit} >
                 {
-                    error !== ''
+                    error !== '' && !isLoading
                     &&
                     <div className='alert alert-danger'>
                         <span><strong><i className='fa fa-exclamation-triangle'></i></strong> {error} </span>
@@ -39,7 +52,11 @@ const Login = () => {
                         {formik.touched.password && <div className='text-danger'>{formik.errors.password}</div> }
                     </div>
                 </div>
-                <button type='submit' className='btn btn-outline-warning btn-block font-weight-bold'>Log in</button>
+                <button type='submit' className={isLoading ? 'btn btn-outline-warning btn-block font-weight-bold disabled' : 'btn btn-outline-warning btn-block font-weight-bold'}>
+                    {
+                        isLoading ? 'Logging in...' : 'Log in'
+                    }
+                </button>
                 <p className='text-center text-muted my-0 py-2'>Or with</p>
                 <div className='d-flex justify-content-center flex-md-row flex-column'>
                     <button type='button' className='btn btn-light border font-weight-bold mx-1 px-5'> <i className='fa fa-github fa-lg'></i> GitHub</button>
