@@ -46,7 +46,7 @@ const Home = () => {
             </div>
 
             {/* Get Started Modal */}
-            <Modal show={show} onHide={handleClose} backdrop="static" centered>
+            <Modal show={show} onHide={handleClose} backdrop="static" centered className='animate__animated animate__fadeIn animate__slow' >
                 <Modal.Header>
                 <Modal.Title>Get Started with BackWrap</Modal.Title>
                 <button className='close' onClick={handleClose}>
@@ -58,7 +58,7 @@ const Home = () => {
 
             </Modal>
             {/* Login Modal */}
-            <Modal show={loginShow} onHide={handleClose} backdrop="static" centered>
+            <Modal show={loginShow} onHide={handleClose} backdrop="static" centered className='animate__animated animate__flipInX animate__slow'>
                 <Modal.Header>
                     <Modal.Title>
                         Log in
