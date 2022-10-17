@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import GetStarted from './GetStarted';
+import Login from './Login';
 
 const Home = () => {
+    const [show, setShow] = useState(false)
+    const [loginShow, setLoginShow] = useState(false)
+    const handleClose = ()=>{
+        setShow(false)
+        setLoginShow(false)
+    }
+    const getStarted = ()=>{
+        setShow(true)
+    }
+    const loginHere = ()=>{
+        setLoginShow(true)
+    }
     return (
         <div>
             <div className='backwrap'>
                 <div className='d-flex justify-content-end py-3 px-2 pb-5'>
-                    {/* <button className='btn btn-success mx-3 btn-sm mt-0'>Login Here</button> */}
+                    <button onClick={loginHere} className='btn btn-outline-warning mx-3 btn-sm mt-0'>Login Here</button>
                     <a href='https://github.com/Backwrap/backwrap'>
                         <i className='fa fa-github fa-lg text-white mx-3'></i>
                     </a>
@@ -22,11 +37,36 @@ const Home = () => {
                 <p className='text-center mt-5 pt-5 mb-0 text-white display-1 backwrap-title'>Backwrap</p>
                 <p className='text-center text-white my-0 backwrap-subtitle display-5'>Endless endpoints</p>
                 <div className='d-flex justify-content-center my-4'>
-                    <button className='px-4 btn btn-lg rounded-pill mx-2 btn-warning font-weight-bold'><i className='fa fa-rocket'></i> Get Started</button>
+                    <button onClick={getStarted} className='px-4 btn btn-lg rounded-pill mx-2 btn-warning font-weight-bold'><i className='fa fa-rocket'></i> Get Started</button>
                     <a href='https://github.com/Backwrap/backwrap' target='_blank' rel='noreferrer' className='px-4 btn btn-lg rounded-pill mx-2 btn-outline-light font-weight-bold'><i className='fa fa-github fa-lg text-warning'></i> GitHub</a>
                 </div>
                 <p className='text-white h6 detail-text px-2'>&copy; 2022 | Backwrap Team</p>
             </div>
+
+            {/* Get Started Modal */}
+            <Modal show={show} onHide={handleClose} backdrop="static" centered>
+                <Modal.Header>
+                <Modal.Title>Get Started with BackWrap</Modal.Title>
+                <button className='close' onClick={handleClose}>
+                    &times;
+                </button>
+                </Modal.Header>
+
+                <GetStarted />
+
+            </Modal>
+            {/* Login Modal */}
+            <Modal show={loginShow} onHide={handleClose} backdrop="static" centered>
+                <Modal.Header>
+                <Modal.Title>Log in</Modal.Title>
+                <button className='close' onClick={handleClose}>
+                    &times;
+                </button>
+                </Modal.Header>
+
+                <Login />
+
+            </Modal>
         </div>
     );
 };
