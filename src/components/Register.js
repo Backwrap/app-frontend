@@ -25,7 +25,7 @@ const Register = () => {
                         <input placeholder='Confirm Password' type='password' className='form-control' name='confirmPassword' />
                     </div>
                 </div>
-                <p className='text-muted'>By registering, you agree to the processing of your personal data by PlanetScale as described in the Privacy Policy.</p>
+                <p className='text-muted'>By registering, you agree to the processing of your personal data by BackWrap as described in the Privacy Policy.</p>
                 <button type='submit' className='btn btn-warning font-weight-bold btn-block'>Register</button>
                 <p className='text-center text-muted my-0 py-2'>Or</p>
                 <div className='d-flex justify-content-center flex-md-row flex-column'>
