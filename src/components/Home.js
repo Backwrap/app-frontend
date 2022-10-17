@@ -37,9 +37,9 @@ const Home = () => {
                 <div className='animate__animated animate__fadeInDown animate__slower'>
                     <p className='text-center mt-5 pt-5 mb-0 text-white display-1 backwrap-title'>Backwrap</p>
                     <p className='text-center text-white my-0 backwrap-subtitle display-5'>Endless endpoints</p>
-                    <div className='d-flex justify-content-center my-4'>
-                        <button onClick={getStarted} className='px-4 btn btn-lg rounded-pill mx-2 btn-warning font-weight-bold'><i className='fa fa-rocket'></i> Get Started</button>
-                        <a href='https://github.com/Backwrap/backwrap' target='_blank' rel='noreferrer' className='px-4 btn btn-lg rounded-pill mx-2 btn-outline-light font-weight-bold'><i className='fa fa-github fa-lg text-warning'></i> GitHub</a>
+                    <div className='d-flex justify-content-center my-4 flex-md-row flex-column'>
+                        <button onClick={getStarted} className='my-2 px-4 btn btn-lg rounded-pill mx-2 btn-warning font-weight-bold'><i className='fa fa-rocket'></i> Get Started</button>
+                        <a href='https://github.com/Backwrap/backwrap' target='_blank' rel='noreferrer' className='my-2 px-4 btn btn-lg rounded-pill mx-2 btn-outline-light font-weight-bold'><i className='fa fa-github fa-lg text-warning'></i> GitHub</a>
                     </div>
                 </div>
                 <p className='text-white h6 detail-text px-2 animate___animated animate__fadeInDown animate__slower'>&copy; 2022 | Backwrap Team</p>
