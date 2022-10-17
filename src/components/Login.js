@@ -1,17 +1,42 @@
-import React from 'react';
+import { useFormik } from 'formik';
+import React, { useState } from 'react';
+import * as Yup from 'yup';
 
 const Login = () => {
+    const [error, setError] = useState('')
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().required('Required'),
+            password: Yup.string().required('Required')
+        }),
+        onSubmit: (values)=>{
+            console.log(values)
+        }
+    })
     return (
         <div>
-            <form className='px-3 py-4'>
+            <form className='px-3 py-4' onSubmit={formik.handleSubmit} >
+                {
+                    error !== ''
+                    &&
+                    <div className='alert alert-danger'>
+                        <span><strong><i className='fa fa-exclamation-triangle'></i></strong> {error} </span>
+                    </div>
+                }
             <div className='form-row'>
                     <div className='form-group col'>
-                        <input placeholder='Email' className='form-control' name='email' />
+                        <input onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder='Email' className='form-control' name='email' />
+                        {formik.touched.email && <div className='text-danger'>{formik.errors.email}</div> }
                     </div>
                 </div>
                 <div className='form-row'>
                     <div className='form-group col'>
-                        <input placeholder='Password' className='form-control' name='password' />
+                        <input onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder='Password' className='form-control' name='password' />
+                        {formik.touched.password && <div className='text-danger'>{formik.errors.password}</div> }
                     </div>
                 </div>
                 <button type='submit' className='btn btn-outline-warning btn-block font-weight-bold'>Log in</button>
